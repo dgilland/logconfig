@@ -1,0 +1,11 @@
+language: python
+python:
+  - "2.7"
+  - "3.2"
+  - "3.3"
+install:
+  - make travisci-install
+script:
+  - make travisci-test
+after_success:
+  - coveralls
