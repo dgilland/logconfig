@@ -6,7 +6,8 @@ configlogging
 [![Coverage Status](https://coveralls.io/repos/dgilland/configlogging/badge.png?branch=master)](https://coveralls.io/r/dgilland/configlogging)
 [![License](https://pypip.in/license/configlogging/badge.png)](https://pypi.python.org/pypi/configlogging/)
 
-Dead simple helper for configuring Python's logging module
+
+Dead simple helper for configuring Python's logging module.
 
 
 ## Requirements
@@ -28,6 +29,18 @@ Dead simple helper for configuring Python's logging module
 ```python
 pip install configlogging
 ```
+
+
+## Overview
+
+This simple library exposes several helper methods for configuring the standard library's `logging` module. There's nothing fancy about it. Under the hood `configlogging` uses `logging.config` to load various configuartion formats.
+
+### Supported Configuration Formats
+
+- JSON
+- YAML
+- CFG
+- Python dict
 
 
 ## Usage
