@@ -45,7 +45,7 @@ def from_dict(dct):
 
 
 def from_filename(filename):
-    """Dispatch logging configuration based on filename extension."""
+    """Dispatch logging configuration based on filename."""
     ext = os.path.splitext(filename)[1]
 
     if ext in ('.json',):
@@ -55,9 +55,17 @@ def from_filename(filename):
     elif ext in ('.cfg', '.ini', '.conf', '.config'):
         from_file(filename)
     else:
-        raise ConfigException(('Unrecognized filename extension. '
-                               'Supported extensions: '
+        raise ConfigException(('Unrecognized filename. '
+                               'Supported filename extensions: '
                                'json, yml, yaml, cfg, ini, conf, config'))
+
+
+def from_env(var):
+    """Dispatch logging configuration based on filename provided through
+    environment variable.
+    """
+    value = os.getenv(var)
+    from_filename(value)
 
 
 def from_autodetect(obj):

@@ -2,6 +2,7 @@
 
 - Add `from_filename()` function.
 - Add `from_autodetect()` function.
+- Add `from_env()` function.
 
 ## v0.0.1 (2014-07-15)
 

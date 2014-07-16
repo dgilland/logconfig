@@ -1,6 +1,7 @@
 
 import unittest
 import logging
+import os
 
 import configlogging
 
@@ -105,3 +106,14 @@ class TestConfiglogging(unittest.TestCase):
         self.assertRaises(configlogging.ConfigException,
                           configlogging.from_autodetect,
                           [])
+
+
+    def test_from_env(self):
+        """Test that from_env() loads config object from filename via
+        environment variable.
+        """
+        var = 'CL_TESTING'
+        os.environ[var] = logging_json
+        configlogging.from_env(var)
+        self.assert_config()
+        del os.environ[var]

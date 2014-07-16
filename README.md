@@ -75,6 +75,8 @@ import configlogging
 
 ### Configuration from JSON
 
+Configure logging using JSON file.
+
 ```python
 configlogging.from_json(filename)
 ```
@@ -107,6 +109,8 @@ Example JSON file:
 
 ### Configuration from YAML
 
+Configure logging using YAML file.
+
 ```python
 configlogging.from_yaml(filename)
 ```
@@ -131,6 +135,8 @@ root:
 ```
 
 ### Configuration from ConfigParser File
+
+Configure logging using ConfigParser compatible file.
 
 ```python
 configlogging.from_file(filename)
@@ -163,6 +169,8 @@ format=%(asctime)s - %(name)s - %(levelname)s - %(message)s
 ```
 
 ### Configuration from Dict
+
+Configure logging using Python dictionary.
 
 ```python
 configlogging.from_dict(dct)
@@ -211,3 +219,14 @@ except configlogging.ConfigException as ex:
 ```
 
 These methods will try to dispatch the function argument to the proper configuration loader or fail trying.
+
+
+### Configuration from Environment Variable
+
+Configure logging using filename provided by environment variable.
+
+```python
+configlogging.from_env(envvar)
+```
+
+Environment variable value will be passed to `from_filename()`.
