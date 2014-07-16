@@ -107,7 +107,6 @@ class TestConfiglogging(unittest.TestCase):
                           configlogging.from_autodetect,
                           [])
 
-
     def test_from_env(self):
         """Test that from_env() loads config object from filename via
         environment variable.
