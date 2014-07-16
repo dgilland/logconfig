@@ -15,7 +15,7 @@ __summary__ = "Helper for configuring stdlib's logging module"
 
 __url__ = 'https://github.com/dgilland/configlogging'
 
-__version__ = '0.0.1'
+__version__ = '0.1.0'
 
 __author__ = 'Derrick Gilland'
 __email__ = 'dgilland@gmail.com'

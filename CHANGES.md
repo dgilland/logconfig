@@ -1,4 +1,4 @@
-## vX.X.X (XXXX-XX-XX)
+## v0.1.0 (2014-07-16)
 
 - Add `from_filename()` function.
 - Add `from_autodetect()` function.
