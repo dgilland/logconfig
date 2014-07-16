@@ -1,3 +1,7 @@
+## v0.1.1 (2014-07-16)
+
+Brown bag release.
+
 ## v0.1.0 (2014-07-16)
 
 - Add `from_filename()` function.

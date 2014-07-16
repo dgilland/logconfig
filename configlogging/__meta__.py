@@ -15,7 +15,7 @@ __summary__ = 'Simple helper moudle for configuring Python logging'
 
 __url__ = 'https://github.com/dgilland/configlogging'
 
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 
 __author__ = 'Derrick Gilland'
 __email__ = 'dgilland@gmail.com'
