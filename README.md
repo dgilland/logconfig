@@ -223,10 +223,10 @@ These methods will try to dispatch the function argument to the proper configura
 
 ### Configuration from Environment Variable
 
-Configure logging using filename provided by environment variable.
+Configure logging using filename provided via environment variable.
 
 ```python
-configlogging.from_env(envvar)
+configlogging.from_env(variable_name)
 ```
 
-Environment variable value will be passed to `from_filename()`.
+**NOTE:** Environment variable value will be passed to `from_filename()`.
