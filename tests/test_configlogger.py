@@ -75,3 +75,29 @@ class TestConfiglogging(unittest.TestCase):
         self.assertRaises(configlogging.ConfigException,
                           configlogging.from_filename,
                           'invalid')
+
+    def test_from_autodetect_dict(self):
+        """Test that from_autodetect() loads config object from dict."""
+        configlogging.from_autodetect(logging_dict)
+
+    def test_from_autodetect_json(self):
+        """Test that from_autodetect() loads config object from json."""
+        configlogging.from_autodetect(logging_json)
+
+    def test_from_autodetect_yaml(self):
+        """Test that from_autodetect() loads config object from yaml."""
+        configlogging.from_autodetect(logging_yaml)
+
+    def test_from_autodetect_file(self):
+        """Test that from_autodetect() loads config object from file."""
+        configlogging.from_autodetect(logging_file)
+
+    def test_from_autodetect_exception(self):
+        """Test that from_autodetect() throws exception on invalid object."""
+        self.assertRaises(configlogging.ConfigException,
+                          configlogging.from_autodetect,
+                          'invalid')
+
+        self.assertRaises(configlogging.ConfigException,
+                          configlogging.from_autodetect,
+                          [])

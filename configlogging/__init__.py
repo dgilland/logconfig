@@ -10,6 +10,9 @@ import json
 import yaml
 import logging.config
 
+from ._compat import string_types
+
+
 class ConfigException(Exception):
     """Base exception for configlogging module."""
     pass
@@ -55,3 +58,14 @@ def from_filename(filename):
         raise ConfigException(('Unrecognized filename extension. '
                                'Supported extensions: '
                                'json, yml, yaml, cfg, ini, conf, config'))
+
+
+def from_autodetect(obj):
+    """Dispatch logging configuration based on object type."""
+    if isinstance(obj, dict):
+        from_dict(obj)
+    elif isinstance(obj, string_types):
+        from_filename(obj)
+    else:
+        raise ConfigException(('Unable to autodetect object: {0}'
+                               .format(repr(obj))))
