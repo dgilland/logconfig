@@ -39,13 +39,35 @@ This simple library exposes several helper methods for configuring the standard 
 
 - JSON
 - YAML
-- CFG
-- Python dict
+- ConfigParser
+- Python Dict
+
+### Quickstart
+
+```python
+import configlogging
+import logging
+
+# Load config from JSON file
+configlogging.from_json('path/to/file.json')
+
+# Load config from YAML file
+configlogging.from_yaml('path/to/file.yml')
+
+# Load config from ConfigParser file
+configlogging.from_yaml('path/to/file.cfg')
+
+# Load config from dict
+configlogging.from_yaml(config_dict)
+
+log = logging.getLogger()
+log.debug('Configuration loaded using configlogging')
+```
 
 
 ## Usage
 
-Use `configlogging` to easily load `logging` configurations. For more details and examples, visit https://docs.python.org/library/logging.config.html.
+Use `configlogging` to easily load `logging` configurations. For more details on configuring `logging`, visit https://docs.python.org/library/logging.config.html.
 
 ```python
 import configlogging
@@ -72,7 +94,8 @@ Example JSON file:
         "console": {
             "class": "logging.StreamHandler",
             "level": "DEBUG",
-            "formatter": "simple"
+            "formatter": "simple",
+            "stream": "ext://sys.stdout"
         }
     },
     "root": {
@@ -101,12 +124,13 @@ handlers:
     class: logging.StreamHandler
     level: DEBUG
     formatter: simple
+    stream: ext://sys.stdout
 root:
   level: DEBUG
   handlers: [console]
 ```
 
-### Configuration from configparser-format File
+### Configuration from ConfigParser File
 
 ```python
 configlogging.from_file(filename)
@@ -159,8 +183,8 @@ Example dict:
         'console': {
             'formatter': 'simple',
             'class': 'logging.StreamHandler',
-            'level':
-            'DEBUG'
+            'level': 'DEBUG',
+            'stream': 'ext://sys.stdout'
         }
     },
     'root': {
@@ -169,3 +193,21 @@ Example dict:
     }
 }
 ```
+
+### Configuration from Autodetection
+
+If, for whatever reason, you do not know what the source of the configuration will be (or if you're just feeling lucky), then you can try to coerce logging configuration using one of the autodetection methods:
+
+```python
+configlogging.from_filename(filename)
+configlogging.from_autodetect(filename_or_dict)
+
+try:
+    configlogging.from_filename(filename)
+    configlogging.from_autodetect(filename_or_dict)
+except configlogging.ConfigException as ex:
+    # Unrecognized configuration argument.
+    pass
+```
+
+These methods will try to dispatch the function argument to the proper configuration loader or fail trying.
