@@ -10,6 +10,10 @@ import json
 import yaml
 import logging.config
 
+class ConfigException(Exception):
+    """Base exception for configlogging module."""
+    pass
+
 
 def from_json(filename):
     """Configure logging module using JSON file."""
@@ -35,3 +39,19 @@ def from_file(filename, **kargs):
 def from_dict(dct):
     """Configure logging module using dict object."""
     logging.config.dictConfig(dct)
+
+
+def from_filename(filename):
+    """Dispatch logging configuration based on filename extension."""
+    ext = os.path.splitext(filename)[1]
+
+    if ext in ('.json',):
+        from_json(filename)
+    elif ext in ('.yml', '.yaml'):
+        from_yaml(filename)
+    elif ext in ('.cfg', '.ini', '.conf', '.config'):
+        from_file(filename)
+    else:
+        raise ConfigException(('Unrecognized filename extension. '
+                               'Supported extensions: '
+                               'json, yml, yaml, cfg, ini, conf, config'))

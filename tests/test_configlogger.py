@@ -54,3 +54,24 @@ class TestConfiglogging(unittest.TestCase):
         """Test that from_dict loads config object."""
         configlogging.from_dict(logging_dict)
         self.assert_config()
+
+    def test_from_filename_json(self):
+        """Test that from_filename loads config object from json."""
+        configlogging.from_filename(logging_json)
+        self.assert_config()
+
+    def test_from_filename_yaml(self):
+        """Test that from_filename loads config object from yaml."""
+        configlogging.from_filename(logging_yaml)
+        self.assert_config()
+
+    def test_from_filename_file(self):
+        """Test that from_filename loads config object from file."""
+        configlogging.from_filename(logging_file)
+        self.assert_config()
+
+    def test_from_filename_exception(self):
+        """Test that from_autodetect() throws exception on invalid object."""
+        self.assertRaises(configlogging.ConfigException,
+                          configlogging.from_filename,
+                          'invalid')
