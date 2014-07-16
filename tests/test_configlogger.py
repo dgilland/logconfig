@@ -79,18 +79,22 @@ class TestConfiglogging(unittest.TestCase):
     def test_from_autodetect_dict(self):
         """Test that from_autodetect() loads config object from dict."""
         configlogging.from_autodetect(logging_dict)
+        self.assert_config()
 
     def test_from_autodetect_json(self):
         """Test that from_autodetect() loads config object from json."""
         configlogging.from_autodetect(logging_json)
+        self.assert_config()
 
     def test_from_autodetect_yaml(self):
         """Test that from_autodetect() loads config object from yaml."""
         configlogging.from_autodetect(logging_yaml)
+        self.assert_config()
 
     def test_from_autodetect_file(self):
         """Test that from_autodetect() loads config object from file."""
         configlogging.from_autodetect(logging_file)
+        self.assert_config()
 
     def test_from_autodetect_exception(self):
         """Test that from_autodetect() throws exception on invalid object."""
