@@ -1,4 +1,4 @@
-"""Dead simple helper for configuring Python's logging module.
+"""Simple helper moudle for configuring Python logging.
 
 For more details on logging config:
 

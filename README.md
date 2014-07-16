@@ -7,7 +7,7 @@ configlogging
 [![License](https://pypip.in/license/configlogging/badge.png)](https://pypi.python.org/pypi/configlogging/)
 
 
-Dead simple helper for configuring Python's logging module.
+Simple helper moudle for configuring Python logging.
 
 
 ## Requirements

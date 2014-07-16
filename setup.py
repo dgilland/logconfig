@@ -2,7 +2,7 @@
 configlogging
 =============
 
-Dead simple helper for configuring Python's logging module.
+Simple helper for configuring Python's logging module.
 
 Documentation: https://github.com/dgilland/configlogging
 """

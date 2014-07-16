@@ -11,7 +11,7 @@ __all__ = [
     '__license__']
 
 __title__ = 'configlogging'
-__summary__ = "Helper for configuring stdlib's logging module"
+__summary__ = 'Simple helper moudle for configuring Python logging'
 
 __url__ = 'https://github.com/dgilland/configlogging'
 
