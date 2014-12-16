@@ -1,5 +1,3 @@
-.PHONY: build clean clean-env clean-files venv install test test-full test-tox lint pep8 pylint release travisci-install travisci-test
-
 ##
 # Variables
 ##
@@ -16,14 +14,17 @@ COVERAGE_TARGET = configlogging
 # Targets
 ##
 
-# project initialization/clean-up
-build: clean venv install
+.PHONY: build
+build: clean install
 
+.PHONY: clean
 clean: clean-env clean-files
 
+.PHONY: clean-env
 clean-env:
 	rm -rf $(ENV_NAME)
 
+.PHONY: clean-files
 clean-files:
 	rm -rf .tox
 	rm -rf .coverage
@@ -32,34 +33,51 @@ clean-files:
 	find . -depth -name __pycache__ -type d -exec rm -rf {} \;
 	rm -rf dist *.egg* build
 
-venv:
+.PHONY: install
+install:
 	rm -rf $(ENV_NAME)
 	virtualenv --no-site-packages $(ENV_NAME)
-
-install:
 	$(PIP) install -r requirements.txt
 
-# testing
-test:
+.PHONY: test
+test: pylint-errors pep8 pytest
+
+.PHONY: pytest
+pytest:
 	$(ENV_ACT) py.test $(PYTEST_ARGS) $(COVERAGE_ARGS) $(COVERAGE_TARGET) $(PYTEST_TARGET)
 
-test-full: lint test-tox clean-files
+.PHONY: test-full
+test-full: pylint-errors test-setuppy clean-files
 
-test-tox:
-	rm -rf .tox
-	$(ENV_ACT) tox
+.PHONY: test-setuppy
+test-setuppy:
+	python setup.py test
 
-# linting
+
+.PHONY: lint
 lint: pylint pep8
 
+.PHONY: pep8
 pep8:
 	$(ENV_ACT) pep8 $(PYTEST_TARGET)
 
+.PHONY: pylint
 pylint:
 	$(ENV_ACT) pylint $(COVERAGE_TARGET)
 
+.PHONY: pylint-errors
+pylint-errors:
+	$(ENV_ACT) pylint -E $(COVERAGE_TARGET)
 
-# code release
+
+.PHONY: master
+master:
+	git checkout master
+	git merge develop
+	git push origin develop master --tags
+	git checkout develop
+
+.PHONY: release
 release:
 	$(ENV_ACT) python setup.py sdist bdist_wheel
 	$(ENV_ACT) twine upload dist/*
@@ -69,8 +87,12 @@ release:
 # TravisCI
 ##
 
+.PHONY: travisci-install
 travisci-install:
 	pip install -r requirements.txt
 
+.PHONY: travisci-test
 travisci-test:
+	pep8 $(PYTEST_TARGET)
+	pylint -E $(COVERAGE_TARGET)
 	py.test $(PYTEST_ARGS) $(COVERAGE_ARGS) $(COVERAGE_TARGET) $(PYTEST_TARGET)
