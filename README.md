@@ -58,7 +58,7 @@ configlogging.from_yaml('path/to/file.yml')
 configlogging.from_yaml('path/to/file.cfg')
 
 # Load config from dict
-configlogging.from_yaml(config_dict)
+configlogging.from_dict(config_dict)
 
 log = logging.getLogger()
 log.debug('Configuration loaded using configlogging')
