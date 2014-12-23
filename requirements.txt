@@ -1,6 +1,6 @@
 logutils>=0.3.3
 pep8>=1.5.7
-pylint>=1.4.0
+pylint<1.4
 pytest>=2.6.4
 pytest-cov>=1.8.1
 PyYAML>=3.11
