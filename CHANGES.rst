@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-vx.x.x (xxxx-xx-xx)
+v0.3.0 (2014-12-23)
 -------------------
 
 - Add support for Python 2.6
