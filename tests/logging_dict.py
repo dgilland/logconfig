@@ -16,8 +16,7 @@ logging_dict = {
         'console': {
             'formatter': 'simple',
             'class': 'logging.StreamHandler',
-            'level':
-            'DEBUG'
+            'level': 'DEBUG'
         }
     },
     'root': {

@@ -62,7 +62,7 @@ setup(
     long_description=read('README.rst'),
     packages=find_packages(exclude=['tests']),
     install_requires=meta['__install_requires__'],
-    tests_require=['tox', 'unittest2'],
+    tests_require=['tox'],
     cmdclass={'test': Tox},
     test_suite='tests',
     keywords='logging config configuration',

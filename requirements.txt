@@ -1,3 +1,4 @@
+logutils>=0.3.3
 pep8>=1.5.7
 pylint>=1.4.0
 pytest>=2.6.4
@@ -5,5 +6,4 @@ pytest-cov>=1.8.1
 PyYAML>=3.11
 tox>=1.8.1
 twine>=1.4.0
-unittest2>=0.8.0
 wheel>=0.24.0
