@@ -10,6 +10,17 @@ from .exceptions import ConfigLogException
 from ._compat import string_types, dictConfig
 
 
+__all__ = (
+    'from_autodetect',
+    'from_dict',
+    'from_env',
+    'from_file',
+    'from_filename',
+    'from_json',
+    'from_yaml',
+)
+
+
 def from_autodetect(obj):
     """Dispatch logging configuration based on autodetecting object type.
 
