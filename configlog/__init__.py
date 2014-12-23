@@ -15,7 +15,7 @@ from ._compat import string_types
 
 __all__ = (
     'ConfigLogException',
-    'from_autodetect'
+    'from_autodetect',
     'from_dict',
     'from_env',
     'from_file',
