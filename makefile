@@ -35,7 +35,6 @@ clean-files:
 
 .PHONY: install
 install:
-	rm -rf $(ENV_NAME)
 	virtualenv --no-site-packages $(ENV_NAME)
 	$(PIP) install -r requirements.txt
 
