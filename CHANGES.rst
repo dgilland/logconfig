@@ -2,6 +2,13 @@ Changelog
 =========
 
 
+v0.2.0 (2014-12-23)
+-------------------
+
+- Renamed project to ``configlog``. (**breaking change**)
+- Rename ``ConfigException`` to ``ConfigLogException``. (**breaking change**)
+
+
 v0.1.1 (2014-07-16)
 -------------------
 
