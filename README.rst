@@ -42,6 +42,8 @@ Overview
 
 This simple library exposes several helper methods for configuring the standard library's ``logging`` module. There's nothing fancy about it. Under the hood ``configlog`` uses ``logging.config`` to load various configuartion formats.
 
+In addition to configuration loading, ``configlog`` provides helpers for easily converting a configured logger's handlers utilize a queue.
+
 
 Supported Configuration Formats
 -------------------------------
@@ -53,8 +55,10 @@ Supported Configuration Formats
 
 
 Quickstart
-----------
+==========
 
+Configuration Loading
+---------------------
 
 .. code-block:: python
 
@@ -75,6 +79,51 @@ Quickstart
 
     log = logging.getLogger()
     log.debug('Configuration loaded using configlog')
+
+
+Queue Utilization
+-----------------
+
+.. code-block:: python
+
+    import configlog
+    import logging
+
+    configlog.from_dict({
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'console': {
+                'class': 'logging.StreamHandler',
+                'level': 'DEBUG'
+            }
+        },
+        'loggers': {
+            'mylogger': {
+                'handlers': ['console']
+            }
+        }
+    })
+
+    # Convert logger's handlers to utilize a queue
+    queue = configlog.Queue(-1)
+    listener = configlog.QueueListener(queue)
+    handler = configlog.QueueHandler(queue)
+
+    mylogger = logging.getLogger('mylogger')
+
+    # You can also pass in the logger name instead of the actual logger.
+    # configlog.queuify_logger('mylogger', handler, listener)
+    configlog.queuify_logger(mylogger, handler, listener)
+
+    assert isinstance(mylogger.handlers[0], configlog.QueueHandler)
+
+    # Start the listener.
+    listener.start()
+
+    # When finished, stop the listener.
+    # This is optional, but not doing so may prevent some logs from being processed.
+    listener.stop()
 
 
 Usage
