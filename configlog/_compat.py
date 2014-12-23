@@ -6,6 +6,13 @@ import sys
 
 
 PY2 = sys.version_info[0] == 2
+PY26 = sys.version_info[0] == 2 and sys.version_info[1] == 6
+
+
+if PY26:  # pragma: no cover
+    from logutils.dictconfig import dictConfig
+else:  # pragma: no cover
+    from logging.config import dictConfig
 
 
 if PY2:  # pragma: no cover

@@ -14,6 +14,7 @@ Requirements
 Compatibility
 -------------
 
+- Python 2.6
 - Python 2.7
 - Python 3.2
 - Python 3.3
@@ -24,6 +25,7 @@ Dependencies
 ------------
 
 - PyYAML
+- logutils (if using Python 2)
 
 
 Installation

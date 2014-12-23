@@ -23,6 +23,11 @@ meta = {}
 exec(read('configlog/__meta__.py'), meta)
 
 
+if sys.version_info < (3,):
+    # For Python 2 backwards compatibility.
+    meta['__install_requires__'].append('logutils>=0.3.3')
+
+
 class Tox(TestCommand):
     user_options = [
         ('tox-args=', 'a', "Arguments to pass to tox")
@@ -57,7 +62,7 @@ setup(
     long_description=read('README.rst'),
     packages=find_packages(exclude=['tests']),
     install_requires=meta['__install_requires__'],
-    tests_require=['tox'],
+    tests_require=['tox', 'unittest2'],
     cmdclass={'test': Tox},
     test_suite='tests',
     keywords='logging config configuration',
