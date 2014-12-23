@@ -1,16 +1,20 @@
 
 import logging
 import os
+from copy import deepcopy
 
 import pytest
 import configlog
+from configlog._compat import PY2, QueueHandler, QueueListener, Queue
 
 from .logging_dict import logging_dict
 
 
-# Py3 compatibility
-if 'reload' not in dir(__builtins__):
-    from imp import reload
+if PY2:
+    # StringIO doesn't work as stream for StreamHandler.
+    from io import BytesIO as IOCapture
+else:
+    from io import StringIO as IOCapture
 
 
 parametrize = pytest.mark.parametrize
@@ -115,3 +119,51 @@ def test_from_env(var, config):
     configlog.from_env(var)
     assert_basic_config()
     del os.environ[var]
+
+
+@parametrize('logger, config', [
+    (logging.getLogger(), logging_dict),
+    ('', logging_dict),
+])
+def test_queuify_handlers(logger, config):
+    queue = Queue(-1)
+    queue_listener = configlog.QueueListener(queue)
+    queue_handler = QueueHandler(queue)
+
+    config = deepcopy(config)
+    stream = IOCapture()
+    config['handlers']['console']['stream'] = stream
+
+    configlog.from_dict(config)
+
+    real_logger = (logger if hasattr(logger, 'handlers')
+                   else logging.getLogger(logger))
+
+    original_handlers = real_logger.handlers[:]
+
+    configlog.queuify_logger(logger, queue_handler, queue_listener)
+
+    assert real_logger.handlers[0] == queue_handler
+
+    for hdlr in original_handlers:
+        assert hdlr in queue_listener.handlers
+
+    queue_listener.start()
+    logging.debug('foo')
+    queue_listener.stop()
+    stream.seek(0)
+
+    assert 'foo' in stream.read()
+
+
+@parametrize('names', [
+    ('foo', 'bar', 'baz')
+])
+def test_get_all_loggers(names):
+    assert configlog.get_all_loggers() == {}
+
+    loggers = [logging.getLogger(name) for name in names]
+    all_loggers = configlog.get_all_loggers()
+
+    assert set(all_loggers.keys()) == set(names)
+    assert set(all_loggers.values()) == set(loggers)

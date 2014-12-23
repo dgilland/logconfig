@@ -6,6 +6,10 @@ vx.x.x (xxxx-xx-xx)
 -------------------
 
 - Add support for Python 2.6
+- Add ``queuify_logger()`` for moving logger's handlers to a queue.
+- Add ``get_all_loggers()`` which returns a ``dict`` of all loggers that have been accessed.
+- Proxy access to ``QueueHandler`` and ``QueueListener`` from either ``logutils`` if on Python 2 or ``logging.handlers`` if on Python 3.
+- Extend base ``QueueListener`` class to respect log level of handler. The current stdlib version doesn't do this.
 
 
 v0.2.0 (2014-12-23)

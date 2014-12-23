@@ -12,7 +12,7 @@ from .__meta__ import (
     __version__,
     __author__,
     __email__,
-    __license__
+    __license__,
 )
 
 
@@ -24,6 +24,14 @@ from .loaders import (
     from_filename,
     from_json,
     from_yaml,
+)
+
+
+from .utils import (
+    get_all_loggers,
+    QueueHandler,
+    QueueListener,
+    queuify_logger,
 )
 
 

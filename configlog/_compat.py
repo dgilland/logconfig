@@ -16,6 +16,14 @@ else:  # pragma: no cover
 
 
 if PY2:  # pragma: no cover
+    from logutils.queue import QueueHandler, QueueListener
+    from Queue import Queue
+
+    text_type = unicode
     string_types = (str, unicode)
 else:  # pragma: no cover
+    from logging.handlers import QueueHandler, QueueListener
+    from queue import Queue
+
+    text_type = str
     string_types = (str,)
