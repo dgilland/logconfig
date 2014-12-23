@@ -26,7 +26,7 @@ __all__ = (
 
 
 class ConfigLogException(Exception):
-    """Base exception for configlogging module."""
+    """Base exception for configlog module."""
     pass
 
 

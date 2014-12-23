@@ -1,11 +1,11 @@
 """Project metadata
 """
 
-__title__ = 'configlogging'
+__title__ = 'configlog'
 __summary__ = 'Simple helper moudle for configuring Python logging'
-__url__ = 'https://github.com/dgilland/configlogging'
+__url__ = 'https://github.com/dgilland/configlog'
 
-__version__ = '0.1.1'
+__version__ = '0.2.0'
 
 __install_requires__ = ['PyYAML>=3.11']
 
