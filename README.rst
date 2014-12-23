@@ -249,7 +249,7 @@ If, for whatever reason, you do not know what the source of the configuration wi
     try:
         configlogging.from_filename(filename)
         configlogging.from_autodetect(filename_or_dict)
-    except configlogging.ConfigException as ex:
+    except configlogging.ConfigLoggingException as ex:
         # Unrecognized configuration argument.
         pass
 

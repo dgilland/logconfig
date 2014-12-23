@@ -13,7 +13,7 @@ import logging.config
 from ._compat import string_types
 
 
-class ConfigException(Exception):
+class ConfigLoggingException(Exception):
     """Base exception for configlogging module."""
     pass
 
