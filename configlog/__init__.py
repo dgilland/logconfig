@@ -29,6 +29,7 @@ from .loaders import (
 
 from .utils import (
     get_all_loggers,
+    Queue,
     QueueHandler,
     QueueListener,
     queuify_logger,

@@ -6,12 +6,15 @@ import logging
 from ._compat import (
     string_types,
     QueueHandler,
-    QueueListener as _QueueListener
+    QueueListener as _QueueListener,
+    Queue
 )
 
 
 __all__ = (
     'get_all_loggers',
+    'Queue',
+    'QueueHandler',
     'QueueListener',
     'queuify_logger',
 )
@@ -20,6 +23,8 @@ __all__ = (
 class QueueListener(_QueueListener):
     """Extension of default ``QueueListener`` that respects ``handler.level``
     when handling records.
+
+    .. versionadded:: 0.3.0
     """
     def handle(self, record):
         """Delegate handling of log records to listened handlers if record's
@@ -33,7 +38,10 @@ class QueueListener(_QueueListener):
 
 
 def get_all_loggers():
-    """Return ``dict`` of all loggers than have been accessed."""
+    """Return ``dict`` of all loggers than have been accessed.
+
+    .. versionadded:: 0.3.0
+    """
     return logging.Logger.manager.loggerDict
 
 
