@@ -14,7 +14,7 @@ from ._compat import string_types
 
 
 __all__ = (
-    'ConfigLoggingException',
+    'ConfigLogException',
     'from_autodetect'
     'from_dict',
     'from_env',
@@ -25,7 +25,7 @@ __all__ = (
 )
 
 
-class ConfigLoggingException(Exception):
+class ConfigLogException(Exception):
     """Base exception for configlogging module."""
     pass
 
@@ -37,8 +37,8 @@ def from_autodetect(obj):
     elif isinstance(obj, string_types):
         from_filename(obj)
     else:
-        raise ConfigLoggingException(
-            ('Unable to autodetect object: {0}'.format(repr(obj))))
+        raise ConfigLogException(('Unable to autodetect object: {0}'
+                                  .format(repr(obj))))
 
 
 def from_dict(dct):
@@ -70,9 +70,9 @@ def from_filename(filename):
     elif ext in ('.cfg', '.ini', '.conf', '.config'):
         from_file(filename)
     else:
-        raise ConfigLoggingException(('Unrecognized filename. '
-                               'Supported filename extensions: '
-                               'json, yml, yaml, cfg, ini, conf, config'))
+        raise ConfigLogException(('Unrecognized filename. '
+                                  'Supported filename extensions: '
+                                  'json, yml, yaml, cfg, ini, conf, config'))
 
 
 def from_json(filename):

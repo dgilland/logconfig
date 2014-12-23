@@ -1,12 +1,12 @@
 """
-configlogging
-=============
+configlog
+=========
 
 Simple helper for configuring Python's logging module.
 
-Project: https://github.com/dgilland/configlogging
+Project: https://github.com/dgilland/configlog
 
-Documentation: https://github.com/dgilland/configlogging
+Documentation: https://github.com/dgilland/configlog
 """
 
 import os
@@ -20,7 +20,7 @@ def read(fname):
 
 
 meta = {}
-exec(read('configlogging/__meta__.py'), meta)
+exec(read('configlog/__meta__.py'), meta)
 
 
 class Tox(TestCommand):

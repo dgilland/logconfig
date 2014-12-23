@@ -1,6 +1,6 @@
-*************
-configlogging
-*************
+*********
+configlog
+*********
 
 |version| |travis| |coveralls| |license|
 
@@ -32,13 +32,13 @@ Installation
 
 ::
 
-    pip install configlogging
+    pip install configlog
 
 
 Overview
 ========
 
-This simple library exposes several helper methods for configuring the standard library's ``logging`` module. There's nothing fancy about it. Under the hood ``configlogging`` uses ``logging.config`` to load various configuartion formats.
+This simple library exposes several helper methods for configuring the standard library's ``logging`` module. There's nothing fancy about it. Under the hood ``configlog`` uses ``logging.config`` to load various configuartion formats.
 
 
 Supported Configuration Formats
@@ -56,34 +56,34 @@ Quickstart
 
 .. code-block:: python
 
-    import configlogging
+    import configlog
     import logging
 
     # Load config from JSON file
-    configlogging.from_json('path/to/file.json')
+    configlog.from_json('path/to/file.json')
 
     # Load config from YAML file
-    configlogging.from_yaml('path/to/file.yml')
+    configlog.from_yaml('path/to/file.yml')
 
     # Load config from ConfigParser file
-    configlogging.from_yaml('path/to/file.cfg')
+    configlog.from_yaml('path/to/file.cfg')
 
     # Load config from dict
-    configlogging.from_dict(config_dict)
+    configlog.from_dict(config_dict)
 
     log = logging.getLogger()
-    log.debug('Configuration loaded using configlogging')
+    log.debug('Configuration loaded using configlog')
 
 
 Usage
 =====
 
-Use ``configlogging`` to easily load ``logging`` configurations. For more details on configuring ``logging``, visit https://docs.python.org/library/logging.config.html.
+Use ``configlog`` to easily load ``logging`` configurations. For more details on configuring ``logging``, visit https://docs.python.org/library/logging.config.html.
 
 
 .. code-block:: python
 
-    import configlogging
+    import configlog
 
 
 Configuration from JSON
@@ -94,7 +94,7 @@ Configure logging using JSON file.
 
 .. code-block:: python
 
-    configlogging.from_json(filename)
+    configlog.from_json(filename)
 
 
 Example JSON file:
@@ -133,7 +133,7 @@ Configure logging using YAML file.
 
 .. code-block:: python
 
-    configlogging.from_yaml(filename)
+    configlog.from_yaml(filename)
 
 
 Example YAML file:
@@ -165,7 +165,7 @@ Configure logging using ConfigParser compatible file.
 
 .. code-block:: python
 
-    configlogging.from_file(filename)
+    configlog.from_file(filename)
 
 
 Example CFG file:
@@ -204,7 +204,7 @@ Configure logging using Python dictionary.
 
 .. code-block:: python
 
-    configlogging.from_dict(dct)
+    configlog.from_dict(dct)
 
 
 Example dict:
@@ -243,13 +243,13 @@ If, for whatever reason, you do not know what the source of the configuration wi
 
 .. code-block:: python
 
-    configlogging.from_filename(filename)
-    configlogging.from_autodetect(filename_or_dict)
+    configlog.from_filename(filename)
+    configlog.from_autodetect(filename_or_dict)
 
     try:
-        configlogging.from_filename(filename)
-        configlogging.from_autodetect(filename_or_dict)
-    except configlogging.ConfigLoggingException as ex:
+        configlog.from_filename(filename)
+        configlog.from_autodetect(filename_or_dict)
+    except configlog.ConfiglogException as ex:
         # Unrecognized configuration argument.
         pass
 
@@ -265,20 +265,20 @@ Configure logging using filename provided via environment variable.
 
 .. code-block:: python
 
-    configlogging.from_env(variable_name)
+    configlog.from_env(variable_name)
 
 
 **NOTE:** Environment variable value will be passed to ``from_filename()``.
 
 
-.. |version| image:: http://img.shields.io/pypi/v/configlogging.svg?style=flat
-    :target: https://pypi.python.org/pypi/configlogging/
+.. |version| image:: http://img.shields.io/pypi/v/configlog.svg?style=flat
+    :target: https://pypi.python.org/pypi/configlog/
 
-.. |travis| image:: http://img.shields.io/travis/dgilland/configlogging/master.svg?style=flat
-    :target: https://travis-ci.org/dgilland/configlogging
+.. |travis| image:: http://img.shields.io/travis/dgilland/configlog/master.svg?style=flat
+    :target: https://travis-ci.org/dgilland/configlog
 
-.. |coveralls| image:: http://img.shields.io/coveralls/dgilland/configlogging/master.svg?style=flat
-    :target: https://coveralls.io/r/dgilland/configlogging
+.. |coveralls| image:: http://img.shields.io/coveralls/dgilland/configlog/master.svg?style=flat
+    :target: https://coveralls.io/r/dgilland/configlog
 
-.. |license| image:: http://img.shields.io/pypi/l/configlogging.svg?style=flat
-    :target: https://pypi.python.org/pypi/configlogging/
+.. |license| image:: http://img.shields.io/pypi/l/configlog.svg?style=flat
+    :target: https://pypi.python.org/pypi/configlog/
