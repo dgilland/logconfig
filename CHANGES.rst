@@ -2,6 +2,9 @@ Changelog
 =========
 
 
+- Rename ``ConfigLogException`` to ``ConfiglogException``. (**breaking change**)
+
+
 v0.3.0 (2014-12-23)
 -------------------
 

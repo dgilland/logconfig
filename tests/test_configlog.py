@@ -80,7 +80,7 @@ def test_from_filename_exception(config):
     raised = False
     try:
         configlog.from_filename(config)
-    except configlog.ConfigLogException:
+    except configlog.ConfiglogException:
         raised = True
 
     assert raised
@@ -105,7 +105,7 @@ def test_from_autodetect_exception(config):
     raised = False
     try:
         configlog.from_autodetect(config)
-    except configlog.ConfigLogException:
+    except configlog.ConfiglogException:
         raised = True
 
     assert raised

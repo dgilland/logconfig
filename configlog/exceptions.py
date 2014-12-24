@@ -2,10 +2,10 @@
 """
 
 __all__ = (
-    'ConfigLogException',
+    'ConfiglogException',
 )
 
 
-class ConfigLogException(Exception):
+class ConfiglogException(Exception):
     """Base exception for configlog module."""
     pass
