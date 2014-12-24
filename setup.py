@@ -1,12 +1,12 @@
 """
-configlog
+logconfig
 =========
 
 Simple helper for configuring Python's logging module.
 
-Project: https://github.com/dgilland/configlog
+Project: https://github.com/dgilland/logconfig
 
-Documentation: https://github.com/dgilland/configlog
+Documentation: https://github.com/dgilland/logconfig
 """
 
 import os
@@ -20,7 +20,7 @@ def read(fname):
 
 
 meta = {}
-exec(read('configlog/__meta__.py'), meta)
+exec(read('logconfig/__meta__.py'), meta)
 
 
 if sys.version_info < (3,):

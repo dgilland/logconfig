@@ -4,8 +4,8 @@ import os
 from copy import deepcopy
 
 import pytest
-import configlog
-from configlog._compat import PY2, QueueHandler, QueueListener, Queue
+import logconfig
+from logconfig._compat import PY2, QueueHandler, QueueListener, Queue
 
 from .logging_dict import logging_dict
 
@@ -35,7 +35,7 @@ def assert_basic_config(handler_class=logging.StreamHandler):
     logging_json
 ])
 def test_from_json(config):
-    configlog.from_json(config)
+    logconfig.from_json(config)
     assert_basic_config()
 
 
@@ -43,7 +43,7 @@ def test_from_json(config):
     logging_yaml
 ])
 def test_from_yaml(config):
-    configlog.from_yaml(config)
+    logconfig.from_yaml(config)
     assert_basic_config()
 
 
@@ -51,7 +51,7 @@ def test_from_yaml(config):
     logging_file
 ])
 def test_from_file(config):
-    configlog.from_file(config)
+    logconfig.from_file(config)
     assert_basic_config()
 
 
@@ -59,7 +59,7 @@ def test_from_file(config):
     logging_dict
 ])
 def test_from_dict(config):
-    configlog.from_dict(config)
+    logconfig.from_dict(config)
     assert_basic_config()
 
 
@@ -69,7 +69,7 @@ def test_from_dict(config):
     logging_file,
 ])
 def test_from_filename(config):
-    configlog.from_filename(config)
+    logconfig.from_filename(config)
     assert_basic_config()
 
 
@@ -79,8 +79,8 @@ def test_from_filename(config):
 def test_from_filename_exception(config):
     raised = False
     try:
-        configlog.from_filename(config)
-    except configlog.ConfiglogException:
+        logconfig.from_filename(config)
+    except logconfig.LogConfigException:
         raised = True
 
     assert raised
@@ -93,7 +93,7 @@ def test_from_filename_exception(config):
     logging_file,
 ])
 def test_from_autodetect(config):
-    configlog.from_autodetect(config)
+    logconfig.from_autodetect(config)
     assert_basic_config()
 
 
@@ -104,8 +104,8 @@ def test_from_autodetect(config):
 def test_from_autodetect_exception(config):
     raised = False
     try:
-        configlog.from_autodetect(config)
-    except configlog.ConfiglogException:
+        logconfig.from_autodetect(config)
+    except logconfig.LogConfigException:
         raised = True
 
     assert raised
@@ -116,7 +116,7 @@ def test_from_autodetect_exception(config):
 ])
 def test_from_env(var, config):
     os.environ[var] = config
-    configlog.from_env(var)
+    logconfig.from_env(var)
     assert_basic_config()
     del os.environ[var]
 
@@ -127,21 +127,21 @@ def test_from_env(var, config):
 ])
 def test_queuify_handlers(logger, config):
     queue = Queue(-1)
-    queue_listener = configlog.QueueListener(queue)
+    queue_listener = logconfig.QueueListener(queue)
     queue_handler = QueueHandler(queue)
 
     config = deepcopy(config)
     stream = IOCapture()
     config['handlers']['console']['stream'] = stream
 
-    configlog.from_dict(config)
+    logconfig.from_dict(config)
 
     real_logger = (logger if hasattr(logger, 'handlers')
                    else logging.getLogger(logger))
 
     original_handlers = real_logger.handlers[:]
 
-    configlog.queuify_logger(logger, queue_handler, queue_listener)
+    logconfig.queuify_logger(logger, queue_handler, queue_listener)
 
     assert real_logger.handlers[0] == queue_handler
 
@@ -160,10 +160,10 @@ def test_queuify_handlers(logger, config):
     ('foo', 'bar', 'baz')
 ])
 def test_get_all_loggers(names):
-    assert configlog.get_all_loggers() == {}
+    assert logconfig.get_all_loggers() == {}
 
     loggers = [logging.getLogger(name) for name in names]
-    all_loggers = configlog.get_all_loggers()
+    all_loggers = logconfig.get_all_loggers()
 
     assert set(all_loggers.keys()) == set(names)
     assert set(all_loggers.values()) == set(loggers)

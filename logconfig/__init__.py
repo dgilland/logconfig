@@ -37,5 +37,5 @@ from .utils import (
 
 
 from .exceptions import (
-    ConfiglogException,
+    LogConfigException,
 )

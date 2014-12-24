@@ -1,5 +1,5 @@
 *********
-configlog
+logconfig
 *********
 
 |version| |travis| |coveralls| |license|
@@ -34,15 +34,15 @@ Installation
 
 ::
 
-    pip install configlog
+    pip install logconfig
 
 
 Overview
 ========
 
-This simple library exposes several helper methods for configuring the standard library's ``logging`` module. There's nothing fancy about it. Under the hood ``configlog`` uses ``logging.config`` to load various configuartion formats.
+This simple library exposes several helper methods for configuring the standard library's ``logging`` module. There's nothing fancy about it. Under the hood ``logconfig`` uses ``logging.config`` to load various configuartion formats.
 
-In addition to configuration loading, ``configlog`` provides helpers for easily converting a configured logger's handlers utilize a queue.
+In addition to configuration loading, ``logconfig`` provides helpers for easily converting a configured logger's handlers utilize a queue.
 
 
 Supported Configuration Formats
@@ -62,23 +62,23 @@ Configuration Loading
 
 .. code-block:: python
 
-    import configlog
+    import logconfig
     import logging
 
     # Load config from JSON file
-    configlog.from_json('path/to/file.json')
+    logconfig.from_json('path/to/file.json')
 
     # Load config from YAML file
-    configlog.from_yaml('path/to/file.yml')
+    logconfig.from_yaml('path/to/file.yml')
 
     # Load config from ConfigParser file
-    configlog.from_yaml('path/to/file.cfg')
+    logconfig.from_yaml('path/to/file.cfg')
 
     # Load config from dict
-    configlog.from_dict(config_dict)
+    logconfig.from_dict(config_dict)
 
     log = logging.getLogger()
-    log.debug('Configuration loaded using configlog')
+    log.debug('Configuration loaded using logconfig')
 
 
 Queue Utilization
@@ -86,10 +86,10 @@ Queue Utilization
 
 .. code-block:: python
 
-    import configlog
+    import logconfig
     import logging
 
-    configlog.from_dict({
+    logconfig.from_dict({
         'version': 1,
         'disable_existing_loggers': False,
         'handlers': {
@@ -106,17 +106,17 @@ Queue Utilization
     })
 
     # Convert logger's handlers to utilize a queue
-    queue = configlog.Queue(-1)
-    listener = configlog.QueueListener(queue)
-    handler = configlog.QueueHandler(queue)
+    queue = logconfig.Queue(-1)
+    listener = logconfig.QueueListener(queue)
+    handler = logconfig.QueueHandler(queue)
 
     mylogger = logging.getLogger('mylogger')
 
     # You can also pass in the logger name instead of the actual logger.
-    # configlog.queuify_logger('mylogger', handler, listener)
-    configlog.queuify_logger(mylogger, handler, listener)
+    # logconfig.queuify_logger('mylogger', handler, listener)
+    logconfig.queuify_logger(mylogger, handler, listener)
 
-    assert isinstance(mylogger.handlers[0], configlog.QueueHandler)
+    assert isinstance(mylogger.handlers[0], logconfig.QueueHandler)
 
     # Start the listener.
     listener.start()
@@ -129,12 +129,12 @@ Queue Utilization
 Usage
 =====
 
-Use ``configlog`` to easily load ``logging`` configurations. For more details on configuring ``logging``, visit https://docs.python.org/library/logging.config.html.
+Use ``logconfig`` to easily load ``logging`` configurations. For more details on configuring ``logging``, visit https://docs.python.org/library/logging.config.html.
 
 
 .. code-block:: python
 
-    import configlog
+    import logconfig
 
 
 Configuration from JSON
@@ -145,7 +145,7 @@ Configure logging using JSON file.
 
 .. code-block:: python
 
-    configlog.from_json(filename)
+    logconfig.from_json(filename)
 
 
 Example JSON file:
@@ -184,7 +184,7 @@ Configure logging using YAML file.
 
 .. code-block:: python
 
-    configlog.from_yaml(filename)
+    logconfig.from_yaml(filename)
 
 
 Example YAML file:
@@ -216,7 +216,7 @@ Configure logging using ConfigParser compatible file.
 
 .. code-block:: python
 
-    configlog.from_file(filename)
+    logconfig.from_file(filename)
 
 
 Example CFG file:
@@ -255,7 +255,7 @@ Configure logging using Python dictionary.
 
 .. code-block:: python
 
-    configlog.from_dict(dct)
+    logconfig.from_dict(dct)
 
 
 Example dict:
@@ -294,13 +294,13 @@ If, for whatever reason, you do not know what the source of the configuration wi
 
 .. code-block:: python
 
-    configlog.from_filename(filename)
-    configlog.from_autodetect(filename_or_dict)
+    logconfig.from_filename(filename)
+    logconfig.from_autodetect(filename_or_dict)
 
     try:
-        configlog.from_filename(filename)
-        configlog.from_autodetect(filename_or_dict)
-    except configlog.ConfiglogException as ex:
+        logconfig.from_filename(filename)
+        logconfig.from_autodetect(filename_or_dict)
+    except logconfig.LogConfigException as ex:
         # Unrecognized configuration argument.
         pass
 
@@ -316,20 +316,20 @@ Configure logging using filename provided via environment variable.
 
 .. code-block:: python
 
-    configlog.from_env(variable_name)
+    logconfig.from_env(variable_name)
 
 
 **NOTE:** Environment variable value will be passed to ``from_filename()``.
 
 
-.. |version| image:: http://img.shields.io/pypi/v/configlog.svg?style=flat
-    :target: https://pypi.python.org/pypi/configlog/
+.. |version| image:: http://img.shields.io/pypi/v/logconfig.svg?style=flat
+    :target: https://pypi.python.org/pypi/logconfig/
 
-.. |travis| image:: http://img.shields.io/travis/dgilland/configlog/master.svg?style=flat
-    :target: https://travis-ci.org/dgilland/configlog
+.. |travis| image:: http://img.shields.io/travis/dgilland/logconfig/master.svg?style=flat
+    :target: https://travis-ci.org/dgilland/logconfig
 
-.. |coveralls| image:: http://img.shields.io/coveralls/dgilland/configlog/master.svg?style=flat
-    :target: https://coveralls.io/r/dgilland/configlog
+.. |coveralls| image:: http://img.shields.io/coveralls/dgilland/logconfig/master.svg?style=flat
+    :target: https://coveralls.io/r/dgilland/logconfig
 
-.. |license| image:: http://img.shields.io/pypi/l/configlog.svg?style=flat
-    :target: https://pypi.python.org/pypi/configlog/
+.. |license| image:: http://img.shields.io/pypi/l/logconfig.svg?style=flat
+    :target: https://pypi.python.org/pypi/logconfig/

@@ -6,9 +6,9 @@ ENV_NAME = env
 ENV_ACT = . env/bin/activate;
 PIP = $(ENV_NAME)/bin/pip
 PYTEST_ARGS = --doctest-modules -v -s
-PYTEST_TARGET = configlog tests
+PYTEST_TARGET = logconfig tests
 COVERAGE_ARGS = --cov-config setup.cfg --cov-report term-missing --cov
-COVERAGE_TARGET = configlog
+COVERAGE_TARGET = logconfig
 
 ##
 # Targets

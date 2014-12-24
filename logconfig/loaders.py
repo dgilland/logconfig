@@ -6,7 +6,7 @@ import json
 import yaml
 import logging.config
 
-from .exceptions import ConfiglogException
+from .exceptions import LogConfigException
 from ._compat import string_types, dictConfig
 
 
@@ -34,7 +34,7 @@ def from_autodetect(obj):
     elif isinstance(obj, string_types):
         from_filename(obj)
     else:
-        raise ConfiglogException(('Unable to autodetect object: {0}'
+        raise LogConfigException(('Unable to autodetect object: {0}'
                                   .format(repr(obj))))
 
 
@@ -88,7 +88,7 @@ def from_filename(filename):
             `.conf`, `.config`.
 
     Raises:
-        ConfiglogException: Raised if unsupported filename extension is used.
+        LogConfigException: Raised if unsupported filename extension is used.
 
     .. versionadded:: 0.1.0
     """
@@ -101,7 +101,7 @@ def from_filename(filename):
     elif ext in ('.cfg', '.ini', '.conf', '.config'):
         from_file(filename)
     else:
-        raise ConfiglogException(('Unrecognized filename. '
+        raise LogConfigException(('Unrecognized filename. '
                                   'Supported filename extensions: '
                                   'json, yml, yaml, cfg, ini, conf, config'))
 
