@@ -2,6 +2,9 @@ Changelog
 =========
 
 
+v0.4.0 (2014-12-24)
+-------------------
+
 - Rename project to ``logconfig``.
 - Rename ``ConfiglogException`` to ``LogConfigException``. (**breaking change**)
 
