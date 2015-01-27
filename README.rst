@@ -72,7 +72,7 @@ Configuration Loading
     logconfig.from_yaml('path/to/file.yml')
 
     # Load config from ConfigParser file
-    logconfig.from_yaml('path/to/file.cfg')
+    logconfig.from_file('path/to/file.cfg')
 
     # Load config from dict
     logconfig.from_dict(config_dict)
