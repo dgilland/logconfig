@@ -1,0 +1,42 @@
+.. logconfig documentation master file
+
+.. include:: ../README.rst
+
+
+Contents:
+
+.. toctree::
+   :maxdepth: 2
+
+   install
+
+
+API Reference
+=============
+
+Includes links to source code.
+
+.. toctree::
+    :maxdepth: 2
+
+    api
+
+
+Project Info
+============
+
+.. toctree::
+    :maxdepth: 1
+
+    license
+    changes
+    authors
+
+
+Indices and tables
+==================
+
+- :ref:`genindex`
+- :ref:`modindex`
+- :ref:`search`
+
