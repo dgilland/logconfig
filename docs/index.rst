@@ -29,7 +29,7 @@ Project Info
     :maxdepth: 1
 
     license
-    changes
+    changelog
     authors
 
 
