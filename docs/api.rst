@@ -35,10 +35,13 @@ Basic utility functions and classes.
 .. autofunction:: logconfig.get_all_loggers
 
 .. autoclass:: logconfig.Queue
+    :members:
 
 .. autoclass:: logconfig.QueueHandler
+    :members:
 
 .. autoclass:: logconfig.QueueListener
+    :members:
 
 .. autofunction:: logconfig.queuify_logger
 
