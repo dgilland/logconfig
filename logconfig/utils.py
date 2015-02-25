@@ -69,8 +69,8 @@ def queuify_logger(logger, queue_handler, queue_listener):
 
     if handlers:
         # The default QueueListener stores handlers as a tuple.
-        queue_listener.handlers = tuple(list(queue_listener.handlers)
-                                        + handlers)
+        queue_listener.handlers = tuple(list(queue_listener.handlers) +
+                                        handlers)
 
     # Remove logger's handlers and replace with single queue handler.
     del logger.handlers[:]
