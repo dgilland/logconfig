@@ -41,7 +41,7 @@ Overview
 
 This simple library exposes several helper methods for configuring the standard library's ``logging`` module. There's nothing fancy about it. Under the hood ``logconfig`` uses ``logging.config`` to load various configuartion formats.
 
-In addition to configuration loading, ``logconfig`` provides helpers for easily converting a configured logger's handlers utilize a queue.
+In addition to configuration loading, ``logconfig`` provides helpers for easily converting a configured logger's handlers to utilize a queue.
 
 
 Supported Configuration Formats
